@@ -189,5 +189,6 @@ export default class GameSharePaServer extends BaseService {
             turnMoney: 26964,
             rank: 1 }
          */
+        await this.repository.updatePlayerInfo(playChannelName, playerInfo); // 修改 time
     }
 }

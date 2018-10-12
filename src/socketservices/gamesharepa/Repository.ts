@@ -4,6 +4,7 @@ import { Constant } from '../../config/enum.constant';
 import { GameRedis } from '../../config/GameRedis';
 import { provide } from '../../ioc/ioc';
 import BaseRepository from '../../models/BaseRepository';
+import PlayerRecordEntity from '../../models/PlayerRecordEntity';
 import Utils from '../../utils/Utils';
 
 @provide('GameSharePaRepository')
@@ -117,5 +118,33 @@ export default class GameSharePaRepository extends BaseRepository {
             }
         }
         return playerInfo;
+    }
+    public async updatePlayerInfo(playChannelName, playerInfo) {
+        const pipeline = await this.redisManger.pipeline();
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0 ; i < playerInfo.length; i++) {
+            pipeline.hincrbyfloat(GameRedis.HASH_PLAYERINFO + playerInfo[i].id, 'handsAmount', playerInfo[i].turnMoney);
+        }
+        pipeline.hmset(GameRedis.HASH_DESKINFO + playChannelName, 'deskMoney', 0);
+        await pipeline.exec();
+        const pip = await this.redisManger.pipeline();
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0 ; i < playerInfo.length; i++) {
+            pip.hmget(GameRedis.HASH_PLAYERINFO + playerInfo[i].id, 'seat', 'handsAmount');
+        }
+        /**
+         * [ [ null, [ '2', '0' ] ],
+         * [ null, [ '1', '0' ] ],
+         * [ null, [ '3', '0' ] ],
+         * [ null, [ '0', '26964' ] ] ]
+         */
+        const  res = await pip.exec();
+        const pip2 = await this.redisManger.pipeline();
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0 ; i < res.length; i++) {
+            const [updateDesk] = Utils.getPipelineData(res[i]);
+            pip2.hmset(GameRedis.LIST_PLAYER_POINT + playChannelName, updateDesk[0], updateDesk[1]);
+        }
+        return pip2.exec();
     }
 }

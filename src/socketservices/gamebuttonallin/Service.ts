@@ -56,6 +56,8 @@ export default class GameButtonAllinServer extends BaseService {
             handsAmount,
             _.toNumber(getPlayerInfo.seat),
             needChangePlayer);
+        const getDeskMoney = await this.repository.getDeskMoney(playChannelName);
+        await this.repository.playerInfo(playChannelName, playerID, getDeskMoney, '0'); // 修改 time
         await this.GameRound.dealDeskAction(playChannelName);
         return {};
     }
