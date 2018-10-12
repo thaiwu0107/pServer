@@ -1,0 +1,122 @@
+paths:
+  '/diamond/deposit':
+    post:
+      tags:
+        - diamond
+      summary: diamond
+      description: diamond
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - playerId
+                  - diamonds
+                properties:
+                  playerId:
+                    description: '玩家ID'
+                    type: string
+                    default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                  diamonds:
+                    description: '鑽石數量'
+                    type: number
+                    default: 99999
+                    example: 99999
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                properties:
+                    playerId:
+                      description: '玩家ID'
+                      type: string
+                      default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                      example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    diamonds:
+                      description: '鑽石數量'
+                      type: number
+                      default: 99999
+                      example: 99999
+                      
+  '/diamond/cost':
+    post:
+      tags:
+        - diamond
+      summary: diamond
+      description: diamond
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - playerId
+                  - diamonds
+                properties:
+                  playerId:
+                      description: '玩家ID'
+                      type: string
+                      default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                      example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                  diamonds:
+                      description: '鑽石數量'
+                      type: number
+                      default: 99999
+                      example: 99999
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                properties:
+                    playerId:
+                      description: '玩家ID'
+                      type: string
+                      default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                      example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    diamonds:
+                      description: '鑽石數量'
+                      type: number
+                      default: 99999
+                      example: 99999

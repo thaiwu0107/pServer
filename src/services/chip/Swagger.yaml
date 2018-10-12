@@ -1,0 +1,200 @@
+paths:
+  '/chip/give':
+    post:
+      tags:
+        - chip
+      summary: chip
+      description: chip
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - managerId
+                  - playerId
+                  - chips
+                properties:
+                  managerId:
+                    description: '代理ID'
+                    type: string
+                    default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                  playerId:
+                    description: '玩家ID'
+                    type: string
+                    default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                  chips:
+                    description: '籌碼數值'
+                    type: number
+                    default: 99999
+                    example: 99999
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                properties:
+                    managerId:
+                      description: '代理ID'
+                      type: string
+                      default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                      example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    playerId:
+                      description: '玩家ID'
+                      type: string
+                      default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                      example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    chips:
+                      description: '籌碼數值'
+                      type: number
+                      default: 99999
+                      example: 99999
+                      
+  '/chip/takeback':
+    post:
+      tags:
+        - chip
+      summary: chip
+      description: chip
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - managerId
+                  - playerId
+                  - chips
+                properties:
+                  managerId:
+                    description: '代理ID'
+                    type: string
+                    default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                  playerId:
+                    description: '玩家ID'
+                    type: string
+                    default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                  chips:
+                    description: '籌碼數值'
+                    type: number
+                    default: 99999
+                    example: 99999
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                properties:
+                    managerId:
+                      description: '代理ID'
+                      type: string
+                      default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                      example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    playerId:
+                      description: '玩家ID'
+                      type: string
+                      default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                      example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    chips:
+                      description: '籌碼數值'
+                      type: number
+                      default: 99999
+                      example: 99999
+                      
+  '/chip/settlement':
+    post:
+      tags:
+        - chip
+      summary: chip
+      description: chip
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - playerId
+                  - chips
+                properties:
+                  playerId:
+                    description: '玩家ID'
+                    type: string
+                    default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                  chips:
+                    description: '籌碼數值'
+                    type: number
+                    default: 99999
+                    example: 99999
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                properties:
+                    result:
+                      description: '成功or失敗'
+                      type: number
+                      default: 1
+                      example: 1

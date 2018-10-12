@@ -1,0 +1,113 @@
+paths:
+  '/mail':
+    post:
+      tags:
+        - mail
+      summary: mail
+      description: mail
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - searchFilter
+                properties:
+                  mail:
+                    description: 'player mail'
+                    type: string
+                    default: 'tom_chen@arcadiatw.com'
+                    example: 'tom_chen@arcadiatw.com'                   
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                required:
+                  - msssage
+                properties:
+                    msssage:
+                      type: string
+                      example: 'success'
+                      default: 'success'
+                      
+  '/mail/modifyemail':
+    post:
+      tags:
+        - mail
+      summary: mail
+      description: mail
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - searchFilter
+                properties:
+                  no:
+                    description: '會員序號'
+                    type: number
+                    default: 17
+                    example: 17
+                  email:
+                    description: '欲修改信箱'
+                    type: string
+                    default: 'meibe_lin@arcadiatw.com'
+                    example: 'meibe_lin@arcadiatw.com'
+                  verycode:
+                    description: '信箱驗證碼'
+                    type: string
+                    default: 'k7oid'
+                    example: 'k7oid'
+
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                required:
+                  - msssage
+                properties:
+                    msssage:
+                      type: string
+                      example: 'success'
+                      default: 'success'

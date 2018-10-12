@@ -1,0 +1,56 @@
+paths:
+  '/logout/signOut':
+    post:
+      tags:
+        - logout
+      summary: sign out
+      description: sign out
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - searchFilter
+                properties:
+                  key:
+                    description: 'Redis token桶'
+                    type: string
+                    default: '{member:barrel}:hash:1'
+                    example: '{member:barrel}:hash:1'
+                  token:
+                    description: 'token'
+                    type: string
+                    default: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJUb20gQ3J1aXNlIiwicmVhbE5hbWUiOiJUaG9tYXMgQ3J1aXNlIE1hcG90aGVyIElWIiwibGFzdExvZ2luVGltZSI6IjIwMTgtMDktMTRUMDI6NDk6MTkuMDAwWiIsImlhdCI6MTUzNjg5MzMxNSwiZXhwIjo3ODQ4NDEzMzE1fQ.Pp-5wAP0YES-5N2xwaKTJJOJRwMgJAtZJkpaXlkqadY'
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJUb20gQ3J1aXNlIiwicmVhbE5hbWUiOiJUaG9tYXMgQ3J1aXNlIE1hcG90aGVyIElWIiwibGFzdExvZ2luVGltZSI6IjIwMTgtMDktMTRUMDI6NDk6MTkuMDAwWiIsImlhdCI6MTUzNjg5MzMxNSwiZXhwIjo3ODQ4NDEzMzE1fQ.Pp-5wAP0YES-5N2xwaKTJJOJRwMgJAtZJkpaXlkqadY'           
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                required:
+                  - msssage
+                properties:
+                    msssage:
+                      type: string
+                      example: 'success'
+                      default: 'null'

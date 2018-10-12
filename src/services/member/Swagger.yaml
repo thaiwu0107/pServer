@@ -1,0 +1,161 @@
+paths:
+  '/member/getmember':
+    post:
+      tags:
+        - member
+      summary: member
+      description: member
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - searchFilter
+                properties:
+                  id:
+                    description: '玩家編號'
+                    type: number
+                    default: 1
+                    example: 1
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                properties:
+                    id:
+                      type: number
+                      example: 1
+                      default: 1
+                    nickname:
+                      type: string
+                      example: 'Tom Cruise'
+                      default: 'Tom Cruise'
+
+  '/member/modifypassword':
+    post:
+      tags:
+        - member
+      summary: member
+      description: member
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - searchFilter
+                properties:
+                  id:
+                    description: '玩家編號'
+                    type: number
+                    default: 17
+                    example: 17
+                  password:
+                    description: '欲修改密碼'
+                    type: string
+                    default: 'zzzz'
+                    example: 'zzzz'
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                properties:
+                    message:
+                      type: string
+                      example: 'success'
+                      default: 'success'
+
+  '/member/modifynickname':
+    post:
+      tags:
+        - member
+      summary: member
+      description: member
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - searchFilter
+                properties:
+                  id:
+                    description: '玩家編號'
+                    type: number
+                    default: 17
+                    example: 17
+                  nickname:
+                    description: '欲修改暱稱'
+                    type: string
+                    default: 'A78964'
+                    example: 'A78964'
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                properties:
+                    message:
+                      type: string
+                      example: 'success'
+                      default: 'success'

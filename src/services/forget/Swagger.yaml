@@ -1,0 +1,71 @@
+paths:
+  '/forget':
+    post:
+      tags:
+        - forget
+      summary: forget password
+      description: forget password
+      deprecated: false
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - reqData
+            properties:
+              reqData:
+                type: object
+                required:
+                  - searchFilter
+                properties:
+                  account:
+                    description: '玩家帳號'
+                    type: string
+                    default: 'tom_chen@arcadiatw.com'
+                    example: 'tom_chen@arcadiatw.com'
+                  verycode:
+                    description: '驗證碼'
+                    type: string
+                    default: 'k8xdd'
+                    example: 'k8xdd'
+                  password:
+                    description: '玩家密碼'
+                    type: string
+                    default: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                    example: '7c4a8d09ca3762af61e59520943dc26494f8941b'
+                  platform:
+                    description: '平台'
+                    type: string
+                    default: 'IOS'
+                    example: 'IOS'
+                  device:
+                    description: '裝置'
+                    type: string
+                    default: 'iphone 8'
+                    example: 'iphone X'           
+      responses:
+        '200':
+          description: OK
+          schema:
+            required:
+              - status
+              - result
+            properties:
+              status:
+                type: integer
+                format: int32 
+                enum:
+                  - 1
+                  - 8001
+                default: 1
+                example: 1
+              result:
+                required:
+                  - msssage
+                properties:
+                    msssage:
+                      type: string
+                      example: 'success'
+                      default: 'null'
